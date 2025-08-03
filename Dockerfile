@@ -27,4 +27,11 @@ COPY ./api/ /app/api
 WORKDIR /app/api
 RUN pip install --no-cache-dir -r requirements.txt
 
+RUN apt-get update && apt-get install -y unzip curl
+RUN curl -s https://ngrok-agent.s3.amazonaws.com/ngrok.asc | tee /etc/apt/trusted.gpg.d/ngrok.asc >/dev/null
+RUN echo "deb https://ngrok-agent.s3.amazonaws.com buster main" | tee /etc/apt/sources.list.d/ngrok.list
+RUN apt-get update && apt-get install ngrok -y
+
+ENV NGROK_AUTHTOKEN=${NGROK_AUTH_TOKEN}
+
 CMD ["uvicorn", "api:app", "--host", "0.0.0.0", "--port", "8000"]
