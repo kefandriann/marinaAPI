@@ -4,10 +4,8 @@ WORKDIR /app/marina
 
 COPY ./marina/ ./
 
-RUN opam update && \
-    opam install dune ocamlfind --yes
+RUN opam install dune ocamlfind --yes
 
-WORKDIR /app/marina
 RUN eval $(opam env) && dune build main.exe
 
 FROM python:3.11-slim
