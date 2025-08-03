@@ -21,5 +21,4 @@ jobs:
 
       - name: Build and run with Docker Compose
         run: |
-          echo "NGROK_AUTHTOKEN=${NGROK_AUTHTOKEN}" > .env
           docker-compose up --build -d
