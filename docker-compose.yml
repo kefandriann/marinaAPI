@@ -11,4 +11,4 @@ services:
     restart: unless-stopped
     command: http api:8000
     environment:
-      - NGROK_AUTHTOKEN=<TON_TOKEN_NGROK>
+      - NGROK_AUTHTOKEN=${NGROK_AUTHTOKEN}
