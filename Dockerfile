@@ -7,6 +7,7 @@ COPY ./marina/ ./
 RUN opam update && \
     opam install dune ocamlfind --yes
 
+WORKDIR /app/marina
 RUN eval $(opam env) && dune build main.exe
 
 FROM python:3.11-slim
@@ -26,7 +27,7 @@ RUN apt-get update && apt-get install -y ngrok
 
 ENV NGROK_AUTHTOKEN=${NGROK_AUTHTOKEN}
 
-COPY --from=builder /marina/_build/default/main.exe /app/marina_exec
+COPY --from=builder /app/marina/_build/default/main.exe /app/marina_exec
 RUN chmod +x /app/marina_exec
 
 COPY ./api/ /app/api
