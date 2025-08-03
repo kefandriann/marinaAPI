@@ -4,6 +4,8 @@ WORKDIR /app/marina
 
 COPY ./marina/ ./
 
+RUN ls -l && cat dune-project
+
 RUN opam install dune ocamlfind --yes
 
 RUN eval $(opam env) && dune build main.exe
