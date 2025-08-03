@@ -34,4 +34,4 @@ RUN apt-get update && apt-get install ngrok -y
 
 ENV NGROK_AUTHTOKEN=${NGROK_AUTH_TOKEN}
 
-CMD ["uvicorn", "api:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ngrok http 8000 --authtoken $NGROK_AUTHTOKEN & uvicorn api:app --host 0.0.0.0 --port 8000
