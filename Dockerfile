@@ -4,6 +4,8 @@ WORKDIR /marina
 
 COPY ./marina/ ./
 
+RUN ls -al /marina
+
 RUN opam install dune --yes
 RUN opam install ocamlfind --yes
 
