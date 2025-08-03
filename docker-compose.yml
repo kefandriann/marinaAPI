@@ -12,3 +12,5 @@ services:
     command: http api:8000
     environment:
       - NGROK_AUTHTOKEN=${NGROK_AUTHTOKEN}
+    depends_on:
+      - api
